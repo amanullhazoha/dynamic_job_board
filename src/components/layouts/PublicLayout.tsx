@@ -8,7 +8,7 @@ const PublicLayout = ({
 }>) => {
   return (
     <>
-      <header className="transition-colors duration-500 bg-white dark:bg-darkBackground sticky top-0 shadow-md">
+      <header className="transition-colors duration-500 bg-white dark:bg-slate-800 sticky top-0 shadow-md">
         <div className="main-container flex justify-between items-center py-5">
           <div className="flex items-center gap-10">
             <Link href="/">
@@ -18,7 +18,7 @@ const PublicLayout = ({
               </p>
             </Link>
 
-            <nav>
+            <nav className="hidden md:block">
               <ul className="flex gap-8 text-base font-medium text-slate-800 dark:text-white">
                 <li>
                   <Link href="/" className="hover:text-green-500">
@@ -27,7 +27,7 @@ const PublicLayout = ({
                 </li>
 
                 <li>
-                  <Link href="/" className="hover:text-green-500">
+                  <Link href="/jobs" className="hover:text-green-500">
                     Job
                   </Link>
                 </li>
@@ -49,19 +49,19 @@ const PublicLayout = ({
 
           <ul className="flex items-center gap-4 text-base font-medium ">
             <Link
-              href="/"
-              className="hover:text-green-500 text-white dark:text-slate-800"
+              href="/login"
+              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800"
             >
-              <p className="bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
+              <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
                 Login
               </p>
             </Link>
 
             <Link
-              href="/"
-              className="hover:text-green-500 text-white dark:text-slate-800"
+              href="/signup"
+              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800"
             >
-              <p className="bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
+              <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
                 Sign Up
               </p>
             </Link>
@@ -73,23 +73,25 @@ const PublicLayout = ({
         </div>
       </header>
 
-      <main className="min-h-[calc(100vh-367px)] py-5">
+      <main className="transition-colors duration-500 min-h-[calc(100vh-367px)] py-5">
         <div className="main-container">{children}</div>
       </main>
 
       <footer className="bg-slate-800">
         <div className="main-container py-10">
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             <div>
-              <h3 className="text-white text-base font-semibold">Resources</h3>
+              <h3 className="text-white text-base font-semibold">
+                Find & place Job
+              </h3>
 
               <div className="mt-2 flex flex-col gap-2.5">
                 <Link href="/" className="text-white hover:underline">
-                  Help & support
+                  Find Job
                 </Link>
 
                 <Link href="/" className="text-white hover:underline">
-                  Success stories
+                  Place Job
                 </Link>
 
                 <Link href="/" className="text-white hover:underline">
@@ -99,19 +101,19 @@ const PublicLayout = ({
             </div>
 
             <div>
-              <h3 className="text-white text-base font-semibold">Resources</h3>
+              <h3 className="text-white text-base font-semibold">Discover</h3>
 
               <div className="mt-2 flex flex-col gap-2.5">
                 <Link href="/" className="text-white hover:underline">
-                  Help & support
+                  Hiring Employ
                 </Link>
 
                 <Link href="/" className="text-white hover:underline">
-                  Success stories
+                  Find Talent
                 </Link>
 
                 <Link href="/" className="text-white hover:underline">
-                  Blog
+                  Find Something
                 </Link>
               </div>
             </div>

@@ -1,37 +1,34 @@
 "use client";
 
+import { MoonIcon } from "@/assets/icons";
 import { useEffect, useState } from "react";
 
 const ThemeToggleBtn = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const handleThemeChange = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
-    localStorage.setItem("theme", theme);
-
-    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", theme === "light" ? "dark" : "light");
   };
 
   useEffect(() => {
-    const themeValue: string | null = localStorage.getItem("theme");
-
-    if (themeValue) {
-      setTheme(themeValue);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      localStorage.setItem("theme", "light");
-
-      document.body.classList.toggle("dark");
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <button
       type="button"
       onClick={handleThemeChange}
-      className="capitalize w-8 h-8 bg-slate-800 dark:bg-white rounded-full text-white dark:text-slate-800 font-medium"
+      className="capitalize w-8 h-8 bg-slate-800 dark:bg-white rounded-full text-white dark:text-slate-800 font-medium flex justify-center items-center"
     >
-      {theme === "light" ? "D" : "L"}
+      <MoonIcon color={theme === "light" ? "#fff" : "#000"} />
     </button>
   );
 };
