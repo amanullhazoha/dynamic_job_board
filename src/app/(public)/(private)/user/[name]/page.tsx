@@ -1,5 +1,7 @@
+import ProfilePage from "@/pages/user/ProfilePage";
+
 const User = () => {
-  return <h1>This is user page</h1>;
+  return <ProfilePage />;
 };
 
 export default User;

@@ -4,7 +4,7 @@ import Checkbox from "../inputs/Checkbox";
 const JobSection = () => {
   return (
     <div className="grid grid-cols-12 gap-6 py-3">
-      <div className="col-span-12 md:col-span-3 shadow-section h-full rounded-md px-4 py-4 dark:bg-slate-800">
+      <div className="col-span-12 md:col-span-3 h-fit shadow-section rounded-md px-4 py-4 dark:bg-slate-800">
         <div className="flex items-center justify-between md:mb-4">
           <p className="text-base font-semibold text-slate-800 dark:text-white">
             Filter By

@@ -1,5 +1,7 @@
+import JobDetailPage from "@/pages/job/JobDetailPage";
+
 const JobDetail = () => {
-  return <h1>This is job Detail page</h1>;
+  return <JobDetailPage />;
 };
 
 export default JobDetail;
