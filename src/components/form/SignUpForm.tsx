@@ -7,7 +7,7 @@ import { signupSchema } from "@/pages/auth/schema";
 
 const SignupForm = () => {
   return (
-    <div className="w-full  sm:w-[90%] xl:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center h-[55vh]">
+    <div className="w-full sm:w-[90%] xl:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center max-md:py-10 md:h-[55vh]">
       <div className="hidden md:block"></div>
 
       <Formik

@@ -8,7 +8,7 @@ const PublicLayout = ({
 }>) => {
   return (
     <>
-      <header className="transition-colors duration-500 bg-white dark:bg-slate-800 sticky top-0 shadow-md">
+      <header className="transition-colors duration-500 bg-white dark:bg-slate-800 sticky top-0 shadow-md z-[9999]">
         <div className="main-container flex justify-between items-center py-5">
           <div className="flex items-center gap-10">
             <Link href="/">
@@ -73,7 +73,7 @@ const PublicLayout = ({
         </div>
       </header>
 
-      <main className="transition-colors duration-500 min-h-[calc(100vh-367px)] py-5">
+      <main className="transition-colors duration-500 md:min-h-[calc(100vh-367px)] py-5">
         <div className="main-container">{children}</div>
       </main>
 
@@ -160,7 +160,7 @@ const PublicLayout = ({
           </div>
         </div>
 
-        <div className="main-container border-t border-white py-4 flex items-center justify-start gap-10">
+        <div className="main-container border-t border-white py-4 flex max-md:flex-col items-center md:justify-start gap-3 md:gap-10">
           <p className="text-white text-sm">
             &copy; 2024 Copyright by{" "}
             <Link href="http://creativecommons.org/licenses">Job Board</Link>
