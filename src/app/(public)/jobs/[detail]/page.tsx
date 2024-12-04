@@ -1,4 +1,6 @@
-import JobDetailPage from "@/pages/job/JobDetailPage";
+"use client";
+
+import JobDetailPage from "@/view/job/JobDetailPage";
 
 const JobDetail = () => {
   return <JobDetailPage />;

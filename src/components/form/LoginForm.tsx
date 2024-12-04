@@ -3,7 +3,7 @@
 import { Formik, Form } from "formik";
 import InputField from "../inputs/InputField";
 import SubmitButton from "../buttons/SubmitButton";
-import { loginSchema } from "@/pages/auth/schema";
+import { loginSchema } from "@/view/auth/schema";
 
 const LoginForm = () => {
   return (

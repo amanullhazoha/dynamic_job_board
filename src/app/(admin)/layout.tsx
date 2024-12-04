@@ -1,7 +1,7 @@
-import PublicLayout from "@/components/layouts/PublicLayout";
+import AdminLayout from "@/components/layouts/AdminLayout";
 
-const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  return <PublicLayout>{children}</PublicLayout>;
+const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+  return <AdminLayout>{children}</AdminLayout>;
 };
 
-export default AdminLayout;
+export default Layout;
