@@ -1,7 +1,8 @@
 "use client";
 
 const LocationIcon = () => {
-  const theme = localStorage.getItem("theme");
+  const theme =
+    typeof window !== "undefined" ? localStorage?.getItem("theme") : "light";
 
   return (
     <svg
