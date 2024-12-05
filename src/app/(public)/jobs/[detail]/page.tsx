@@ -1,6 +1,6 @@
 import { getJob } from "@/app/services";
-import { jobDetails } from "@/utilities/interface/job.interface";
 import JobDetailPage from "@/view/job/JobDetailPage";
+// import { jobDetails } from "@/utilities/interface/job.interface";
 
 const JobDetail = async ({ params }: { params: any }) => {
   const job: any = await getJob(params?.detail);

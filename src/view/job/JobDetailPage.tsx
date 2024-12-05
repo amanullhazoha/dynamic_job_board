@@ -1,29 +1,5 @@
 import JobDetailTab from "@/components/tabs/JobDetailTab";
-import { jobDetails } from "@/utilities/interface/job.interface";
 
-// description: string;
-// company_name: string;
-// location: string;
-
-// title: string;
-// employment_type: string;
-// salary_range: string;
-// requirements: string;
-// benefits: string;
-// status: string;
-// company_logo: string;
-// contact_email: string;
-// contact_phone: string;
-// remote_option: boolean;
-// job_category: string;
-// experience_level: string;
-// number_of_positions: number;
-// skills: [string];
-// id: number;
-// posted_by: number;
-// posted_date: string;
-// application_deadline: string;
-// job_role: string;
 const JobDetailPage = ({ jobDetail }: any) => {
   return (
     <div className="w-full md:w-[80%] lg:w-[75%] mx-auto dark:bg-slate-800 shadow-section px-2.5 md:px-5 py-5 md:py-6 mt-4">
@@ -101,9 +77,11 @@ const JobDetailPage = ({ jobDetail }: any) => {
         </h3>
 
         <ul className="list-inside list-disc text-slate-800 dark:text-white text-sm font-semibold flex flex-col gap-1 ml-3">
-          {jobDetail?.requirements?.split(",").map((item: string) => (
-            <li>{item}</li>
-          ))}
+          {jobDetail?.requirements
+            ?.split(",")
+            .map((item: string, index: number) => (
+              <li key={index}>{item}</li>
+            ))}
         </ul>
       </div>
 

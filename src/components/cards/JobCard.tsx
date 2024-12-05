@@ -1,6 +1,8 @@
 import Link from "next/link";
 import LocationIcon from "@/assets/icons/LocationIcon";
 import { jobInfo } from "@/utilities/interface/job.interface";
+import BriefcaseIcon from "@/assets/icons/BriefcaseIcon";
+import CalenderIcon from "@/assets/icons/CalenderIcon";
 
 const JobCard = ({ job }: { job: jobInfo }) => {
   return (
@@ -23,14 +25,14 @@ const JobCard = ({ job }: { job: jobInfo }) => {
 
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <LocationIcon />
+            <BriefcaseIcon />
             <p className="text-slate-500 dark:text-white text-sm font-semibold">
               {job?.experience_level}
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <LocationIcon />
+            <CalenderIcon />
             <p className="text-slate-500 dark:text-white text-sm font-semibold">
               Deadline: {job?.application_deadline}
             </p>

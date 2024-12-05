@@ -15,8 +15,7 @@ export default {
         darkBackground: "#1a202c",
       },
       boxShadow: {
-        section:
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px 5px rgb(0 0 0 / 0.1)",
+        section: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
     },
   },

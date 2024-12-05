@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Navbar from "../navs/MainNav";
 import ThemeToggleBtn from "../buttons/ThemeToggleBtn";
+// import MenuIcon from "@/assets/icons/MenuIcon";
 
 const PublicLayout = ({
   children,
@@ -9,7 +11,7 @@ const PublicLayout = ({
   return (
     <>
       <header className="transition-colors duration-500 bg-white dark:bg-slate-800 sticky top-0 shadow-md z-[9999]">
-        <div className="main-container flex justify-between items-center py-5">
+        <div className="main-container flex justify-between items-center py-5 relative">
           <div className="flex items-center gap-10">
             <Link href="/">
               <p className="text-2xl font-bold text-slate-800 dark:text-white">
@@ -47,10 +49,10 @@ const PublicLayout = ({
             </nav>
           </div>
 
-          <ul className="flex items-center gap-4 text-base font-medium ">
+          <ul className="items-center gap-4 text-base font-medium relative hidden md:flex">
             <Link
               href="/login"
-              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800"
+              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800 "
             >
               <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
                 Login
@@ -59,7 +61,7 @@ const PublicLayout = ({
 
             <Link
               href="/signup"
-              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800"
+              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800 "
             >
               <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
                 Sign Up
@@ -70,6 +72,7 @@ const PublicLayout = ({
               <ThemeToggleBtn />
             </li>
           </ul>
+          <Navbar />
         </div>
       </header>
 

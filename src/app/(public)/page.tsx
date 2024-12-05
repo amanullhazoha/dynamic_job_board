@@ -1,5 +1,7 @@
+import HomePage from "@/view/home/HomePage";
+
 const Home = () => {
-  return <h1 className="text-black dark:text-white">This is Home Page</h1>;
+  return <HomePage />;
 };
 
 export default Home;

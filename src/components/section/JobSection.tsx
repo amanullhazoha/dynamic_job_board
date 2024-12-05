@@ -8,9 +8,9 @@ import { jobInfo } from "@/utilities/interface/job.interface";
 
 const JobSection = () => {
   const [jobs, setJob] = useState([]);
-  const [jobType, setType] = useState([]);
-  const [jobCategory, setJobCategory] = useState([]);
-  const [jobLocation, setJobLocation] = useState<any>([]);
+  // const [jobType, setType] = useState([]);
+  // const [jobCategory, setJobCategory] = useState([]);
+  // const [jobLocation, setJobLocation] = useState<any>([]);
 
   useEffect(() => {
     const allJobPosts = async () => {

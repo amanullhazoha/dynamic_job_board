@@ -1,8 +1,10 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ToastContainer } from "react-toastify";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
