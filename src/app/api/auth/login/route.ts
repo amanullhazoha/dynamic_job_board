@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       status: 200,
-      data: { access_token: token },
+      data: { token },
       message: "User login successfully",
     });
   } catch (error: any) {

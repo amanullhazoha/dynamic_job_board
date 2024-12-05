@@ -1,19 +1,43 @@
 import JobDetailTab from "@/components/tabs/JobDetailTab";
+import { jobDetails } from "@/utilities/interface/job.interface";
 
-const JobDetailPage = () => {
+// description: string;
+// company_name: string;
+// location: string;
+
+// title: string;
+// employment_type: string;
+// salary_range: string;
+// requirements: string;
+// benefits: string;
+// status: string;
+// company_logo: string;
+// contact_email: string;
+// contact_phone: string;
+// remote_option: boolean;
+// job_category: string;
+// experience_level: string;
+// number_of_positions: number;
+// skills: [string];
+// id: number;
+// posted_by: number;
+// posted_date: string;
+// application_deadline: string;
+// job_role: string;
+const JobDetailPage = ({ jobDetail }: any) => {
   return (
-    <div className="w-full md:w-[80%] lg:w-[75%] mx-auto dark:bg-slate-800  shadow-section px-2.5 md:px-5 py-3 md:py-6 mt-4">
+    <div className="w-full md:w-[80%] lg:w-[75%] mx-auto dark:bg-slate-800 shadow-section px-2.5 md:px-5 py-5 md:py-6 mt-4">
       <div>
         <h2 className="text-lg font-semibold text-slate-600 dark:text-white">
-          Taslima Marriage Association
+          {jobDetail?.company_name}
         </h2>
 
         <h1 className="text-3xl font-semibold text-slate-800 dark:text-white mt-3 leading-none">
-          Sales Executive Officer
+          {jobDetail?.job_role}
         </h1>
 
         <p className="text-base font-semibold text-slate-500 dark:text-white mt-3">
-          Application Deadline: 7 Dec 2024
+          Application Deadline: {jobDetail?.application_deadline}
         </p>
       </div>
 
@@ -28,7 +52,22 @@ const JobDetailPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <p className="text-sm text-slate-800 dark:text-white">
-            Vacancy: <span className="font-semibold">10</span>
+            Vacancy:{" "}
+            <span className="font-semibold">
+              {jobDetail?.number_of_positions}
+            </span>
+          </p>
+
+          <p className="text-sm text-slate-800 dark:text-white">
+            Experience:{" "}
+            <span className="font-semibold">{jobDetail?.experience_level}</span>
+          </p>
+
+          <p className="text-sm text-slate-800 dark:text-white">
+            Remote Option:{" "}
+            <span className="font-semibold">
+              {jobDetail?.remote_option ? "Yes" : "No"}
+            </span>
           </p>
 
           <p className="text-sm text-slate-800 dark:text-white">
@@ -40,15 +79,8 @@ const JobDetailPage = () => {
           </p>
 
           <p className="text-sm text-slate-800 dark:text-white">
-            Vacancy: <span className="font-semibold">10</span>
-          </p>
-
-          <p className="text-sm text-slate-800 dark:text-white">
-            Vacancy: <span className="font-semibold">10</span>
-          </p>
-
-          <p className="text-sm text-slate-800 dark:text-white">
-            Vacancy: <span className="font-semibold">10</span>
+            Location:{" "}
+            <span className="font-semibold">{jobDetail?.location}</span>
           </p>
         </div>
       </div>
@@ -59,20 +91,7 @@ const JobDetailPage = () => {
         </h3>
 
         <p className="text-sm text-slate-800 dark:text-white text-justify">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id qui
-          dolorem porro animi corrupti! Quae dolores exercitationem obcaecati
-          aspernatur placeat magnam, hic saepe ipsum, consectetur, recusandae
-          officiis architecto soluta a? Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Id qui dolorem porro animi corrupti! Quae dolores
-          exercitationem obcaecati aspernatur placeat magnam, hic saepe ipsum,
-          consectetur, recusandae officiis architecto soluta a? Lorem ipsum
-          dolor sit amet consectetur, adipisicing elit. Id qui dolorem porro
-          animi corrupti! Quae dolores exercitationem obcaecati aspernatur
-          placeat magnam, hic saepe ipsum, consectetur, recusandae officiis
-          architecto soluta a? Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Id qui dolorem porro animi corrupti! Quae dolores
-          exercitationem obcaecati aspernatur placeat magnam, hic saepe ipsum,
-          consectetur, recusandae officiis architecto soluta a?
+          {jobDetail?.description}
         </p>
       </div>
 
@@ -82,14 +101,9 @@ const JobDetailPage = () => {
         </h3>
 
         <ul className="list-inside list-disc text-slate-800 dark:text-white text-sm font-semibold flex flex-col gap-1 ml-3">
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
-          <li>Higher Secondary</li>
+          {jobDetail?.requirements?.split(",").map((item: string) => (
+            <li>{item}</li>
+          ))}
         </ul>
       </div>
 

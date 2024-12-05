@@ -1,18 +1,38 @@
 "use client";
 
+import Cookie from "js-cookie";
 import { Formik, Form } from "formik";
+import { toast } from "react-toastify";
+import { login } from "@/app/services";
+import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
-import SubmitButton from "../buttons/SubmitButton";
 import { loginSchema } from "@/view/auth/schema";
+import SubmitButton from "../buttons/SubmitButton";
 
 const LoginForm = () => {
+  const router = useRouter();
+
+  const handleSubmit = async (data: { email: string; password: string }) => {
+    const response = await login({ data });
+
+    if (response.status === 200) {
+      toast.success(response?.message);
+
+      Cookie.set("access_token", response.data.token, { expires: 7 });
+
+      router.push("/");
+    } else {
+      toast.error(response?.message);
+    }
+  };
+
   return (
     <div className="w-full sm:w-[90%] xl:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center max-md:py-10 md:h-[55vh]">
       <div className="hidden md:block"></div>
 
       <Formik
+        onSubmit={handleSubmit}
         validationSchema={loginSchema}
-        onSubmit={() => console.log("hello")}
         initialValues={{ email: "", password: "" }}
       >
         {({ errors, touched, handleSubmit }) => (
