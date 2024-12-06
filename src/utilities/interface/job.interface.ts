@@ -31,3 +31,23 @@ export interface jobDetails {
   application_deadline: string;
   job_role: string;
 }
+
+export interface jobPost {
+  title: string;
+  description: string;
+  company_name: string;
+  location: string;
+  employment_type: string;
+  salary_range: string;
+  requirements: string;
+  benefits: string;
+  company_logo: string;
+  contact_email: string;
+  contact_phone: string;
+  job_category: string;
+  experience_level: string;
+  number_of_positions: number;
+  skills: string;
+  application_deadline: string;
+  job_role: string;
+}

@@ -9,7 +9,27 @@ import InputField from "../inputs/InputField";
 import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
 import TextareaField from "../inputs/TextareaField";
+import { jobPost } from "@/utilities/interface/job.interface";
 
+const initialValue: jobPost = {
+  title: "",
+  company_name: "",
+  description: "",
+  location: "",
+  employment_type: "",
+  salary_range: "",
+  requirements: "",
+  benefits: "",
+  company_logo: "",
+  contact_email: "",
+  contact_phone: "",
+  job_category: "",
+  experience_level: "",
+  number_of_positions: 0,
+  skills: "",
+  application_deadline: "",
+  job_role: "",
+};
 const CreateJobForm = () => {
   const router = useRouter();
 
@@ -36,25 +56,7 @@ const CreateJobForm = () => {
       <Formik
         onSubmit={handleSubmit}
         validationSchema={loginSchema}
-        initialValues={{
-          title: "",
-          company_name: "",
-          description: "",
-          location: "",
-          employment_type: "",
-          salary_range: "",
-          requirements: "",
-          benefits: "",
-          company_logo: "",
-          contact_email: "",
-          contact_phone: "",
-          job_category: "",
-          experience_level: "",
-          number_of_positions: null,
-          skills: "",
-          application_deadline: "",
-          job_role: "",
-        }}
+        initialValues={initialValue}
       >
         {({ errors, touched, handleSubmit }) => (
           <Form
