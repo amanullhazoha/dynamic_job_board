@@ -1,59 +1,56 @@
 "use client";
 
-// import Cookie from "js-cookie";
 import { Formik, Form } from "formik";
-// import { toast } from "react-toastify";
-// import { login } from "@/app/services";
-// import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { updateJob } from "@/app/services";
+import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
-import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
 import TextareaField from "../inputs/TextareaField";
+import { createJobSchema } from "@/view/job/schema";
 import { jobPost } from "@/utilities/interface/job.interface";
 
 const initialValue: jobPost = {
   title: "",
-  company_name: "",
-  description: "",
+  skills: "",
+  job_role: "",
+  benefits: "",
   location: "",
-  employment_type: "",
+  description: "",
   salary_range: "",
   requirements: "",
-  benefits: "",
+  company_name: "",
   company_logo: "",
+  job_category: "",
   contact_email: "",
   contact_phone: "",
-  job_category: "",
+  employment_type: "",
   experience_level: "",
   number_of_positions: 0,
-  skills: "",
   application_deadline: "",
-  job_role: "",
 };
 
 const UpdateJobForm = () => {
-  //   const router = useRouter();
+  const router = useRouter();
 
-  const handleSubmit = async () => {
-    // const response = await login({});
-    // if (response.status === 200) {
-    //   toast.success(response?.message);
-    //   Cookie.set("access_token", response.data.token, { expires: 7 });
-    //   router.push("/");
-    // } else {
-    //   toast.error(response?.message);
-    // }
+  const handleSubmit = async (data: jobPost) => {
+    const response = await updateJob({ id: "1", data });
+    if (response.status === 200) {
+      toast.success(response?.message);
+
+      router.push("/job");
+    } else {
+      toast.error(response?.message);
+    }
   };
 
   return (
     <div className="w-full">
-      <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-        Create Job Post
-      </h3>
+      <h3 className="text-2xl font-semibold text-slate-800 mb-4">Update Job</h3>
 
       <Formik
         onSubmit={handleSubmit}
-        validationSchema={loginSchema}
+        validationSchema={createJobSchema}
         initialValues={initialValue}
       >
         {({ errors, touched, handleSubmit }) => (

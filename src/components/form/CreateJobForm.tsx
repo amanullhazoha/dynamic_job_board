@@ -1,47 +1,44 @@
 "use client";
 
-import Cookie from "js-cookie";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
-import { login } from "@/app/services";
+import { createJob } from "@/app/services";
 import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
-import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
 import TextareaField from "../inputs/TextareaField";
+import { createJobSchema } from "@/view/job/schema";
 import { jobPost } from "@/utilities/interface/job.interface";
 
 const initialValue: jobPost = {
   title: "",
-  company_name: "",
-  description: "",
+  skills: "",
+  job_role: "",
   location: "",
-  employment_type: "",
+  benefits: "",
+  description: "",
+  company_name: "",
   salary_range: "",
   requirements: "",
-  benefits: "",
+  job_category: "",
   company_logo: "",
   contact_email: "",
   contact_phone: "",
-  job_category: "",
+  employment_type: "",
   experience_level: "",
   number_of_positions: 0,
-  skills: "",
   application_deadline: "",
-  job_role: "",
 };
 const CreateJobForm = () => {
   const router = useRouter();
 
-  const handleSubmit = async (data: any) => {
-    const response = await login({ data });
+  const handleSubmit = async (data: jobPost) => {
+    const response = await createJob({ data });
 
     if (response.status === 200) {
       toast.success(response?.message);
 
-      Cookie.set("access_token", response.data.token, { expires: 7 });
-
-      router.push("/");
+      router.push("/jobs");
     } else {
       toast.error(response?.message);
     }
@@ -55,8 +52,8 @@ const CreateJobForm = () => {
 
       <Formik
         onSubmit={handleSubmit}
-        validationSchema={loginSchema}
         initialValues={initialValue}
+        validationSchema={createJobSchema}
       >
         {({ errors, touched, handleSubmit }) => (
           <Form
@@ -223,7 +220,7 @@ const CreateJobForm = () => {
             <InputField
               type="number"
               errors={errors}
-              required={true}
+              required={false}
               touched={touched}
               label="Vacant Position"
               name="number_of_positions"

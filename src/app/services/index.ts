@@ -1,9 +1,5 @@
-// import Cookies from "js-cookie";
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// console.log(Cookies.get("access-token"));
-
-console.log(process.env.NEXT_PUBLIC_API_URL);
+import Cookies from "js-cookie";
+import { jobPost } from "@/utilities/interface/job.interface";
 
 export async function login({
   data,
@@ -32,79 +28,71 @@ export async function signup({
 }
 
 export async function getAllJobs() {
-  try {
-    const res = await fetch("/api/jobs", {});
+  const res = await fetch("/api/jobs", { cache: "force-cache" });
 
-    const posts = await res.json();
-
-    return posts?.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await res.json();
 }
 
 export async function getJob(id: string): Promise<any> {
-  try {
-    const res = await fetch(`/api/jobs/${id}`, {
-      cache: "force-cache",
-    });
+  const res = await fetch(`/api/jobs/${id}`, {
+    cache: "force-cache",
+  });
 
-    const job = await res.json();
-
-    return job.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await res.json();
 }
 
-export async function createJob(id: string): Promise<any> {
-  try {
-    const res = await fetch(`/api/jobs/${id}`, {
-      cache: "force-cache",
-    });
+export async function createJob({ data }: { data: jobPost }): Promise<any> {
+  const res = await fetch(`/api/jobs`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Cookies.get("access-token")}`,
+    },
+  });
 
-    const job = await res.json();
-
-    return job.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await res.json();
 }
 
-export async function updateJob(id: string): Promise<any> {
-  try {
-    const res = await fetch(`/api/jobs/${id}`, {
-      cache: "force-cache",
-    });
+export async function updateJob({
+  id,
+  data,
+}: {
+  id: string;
+  data: any;
+}): Promise<any> {
+  const res = await fetch(`/api/jobs/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Cookies.get("access-token")}`,
+    },
+  });
 
-    const job = await res.json();
-
-    return job.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await res.json();
 }
 
 export async function deleteJob(id: string): Promise<any> {
-  try {
-    const res = await fetch(`/api/jobs/${id}`, {
-      cache: "force-cache",
-    });
+  const res = await fetch(`/api/jobs/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Cookies.get("access-token")}`,
+    },
+  });
 
-    const job = await res.json();
-
-    return job.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await res.json();
 }
 
 export async function userJob(): Promise<any> {
   const res = await fetch(`/api/user/jobs`, {
     cache: "force-cache",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Cookies.get("access-token")}`,
+    },
   });
 
-  const job = await res.json();
-
-  return job.data;
+  return await res.json();
 }
