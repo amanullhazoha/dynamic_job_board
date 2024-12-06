@@ -165,8 +165,7 @@ const PublicLayout = ({
 
         <div className="main-container border-t border-white py-4 flex max-md:flex-col items-center md:justify-start gap-3 md:gap-10">
           <p className="text-white text-sm">
-            &copy; 2024 Copyright by{" "}
-            <Link href="http://creativecommons.org/licenses">Job Board</Link>
+            &copy; 2024 Copyright by <Link href="/">Job Board</Link>
           </p>
 
           <div className="text-sm">
