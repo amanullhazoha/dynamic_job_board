@@ -1,10 +1,10 @@
 "use client";
 
-import Cookie from "js-cookie";
+// import Cookie from "js-cookie";
 import { Formik, Form } from "formik";
-import { toast } from "react-toastify";
-import { login } from "@/app/services";
-import { useRouter } from "next/navigation";
+// import { toast } from "react-toastify";
+// import { login } from "@/app/services";
+// import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
 import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
@@ -32,9 +32,9 @@ const initialValue: jobPost = {
 };
 
 const UpdateJobForm = () => {
-  const router = useRouter();
+  //   const router = useRouter();
 
-  const handleSubmit = async (data: jobPost) => {
+  const handleSubmit = async () => {
     // const response = await login({});
     // if (response.status === 200) {
     //   toast.success(response?.message);
