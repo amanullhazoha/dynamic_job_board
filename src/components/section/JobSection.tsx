@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "react-toastify";
 import JobCard from "../cards/JobCard";
 import Checkbox from "../inputs/Checkbox";
 import { useEffect, useState } from "react";
@@ -7,19 +8,19 @@ import { getAllJobs } from "@/app/services";
 import { jobInfo } from "@/utilities/interface/job.interface";
 
 const JobSection = () => {
-  const [jobs, setJob] = useState([]);
+  const [jobs, setJobs] = useState([]);
   // const [jobType, setType] = useState([]);
   // const [jobCategory, setJobCategory] = useState([]);
   // const [jobLocation, setJobLocation] = useState<any>([]);
 
   useEffect(() => {
     const allJobPosts = async () => {
-      try {
-        const res = await getAllJobs();
+      const response = await getAllJobs();
 
-        setJob(res);
-      } catch (error) {
-        console.log(error);
+      if (response.status === 200) {
+        setJobs(response.data);
+      } else {
+        toast.error(response?.message);
       }
     };
 

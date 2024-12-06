@@ -1,5 +1,3 @@
-"use client";
-
 import JobSection from "@/components/section/JobSection";
 
 const JobPage = () => {

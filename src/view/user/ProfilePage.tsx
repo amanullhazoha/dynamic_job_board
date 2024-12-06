@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { userJob } from "@/app/services";
 import JobCard from "@/components/cards/JobCard";
@@ -10,12 +11,12 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const allJobPosts = async () => {
-      try {
-        const res = await userJob();
+      const response = await userJob();
 
-        setJobs(res);
-      } catch (error) {
-        console.log(error);
+      if (response.status === 200) {
+        setJobs(response.data);
+      } else {
+        toast.error(response?.message);
       }
     };
 
