@@ -26,7 +26,7 @@ const Navbar = () => {
         <ThemeToggleBtn />
 
         <button onClick={toggleMenu} className="text-slate-800 dark:text-white">
-          <MenuIcon color="#000" />
+          <MenuIcon />
         </button>
       </div>
 

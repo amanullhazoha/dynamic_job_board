@@ -11,7 +11,7 @@ const ChatSection = () => {
         className="w-10 h-10 rounded-full flex justify-center items-center"
         onClick={() => setOpenChat(true)}
       >
-        <MessageIcon color="#000" />
+        <MessageIcon />
       </button>
 
       {openChat && (

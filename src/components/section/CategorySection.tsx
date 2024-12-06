@@ -13,7 +13,7 @@ const CategorySection = () => {
         {jobCategories?.map((item: { name: string; id: number }) => (
           <Link href="/" key={item?.id}>
             <li className="flex items-center gap-1.5 font-semibold text-sm text-slate-800 dark:text-white">
-              <ArrowIcon color="#000" /> {item?.name}
+              <ArrowIcon /> {item?.name}
             </li>
           </Link>
         ))}
