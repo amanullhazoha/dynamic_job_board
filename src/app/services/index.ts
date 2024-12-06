@@ -1,7 +1,8 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 // const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-console.log(Cookies.get("access-token"));
+// console.log(Cookies.get("access-token"));
+
 console.log(process.env.NEXT_PUBLIC_API_URL);
 
 export async function login({
