@@ -9,7 +9,7 @@ export async function login({
 }: {
   data: { password: string; email: string };
 }) {
-  const res = await fetch(`${API_URL}/api/auth/login`, {
+  const res = await fetch(`/api/auth/login`, {
     method: "POST",
     body: JSON.stringify(data),
   });
@@ -22,7 +22,7 @@ export async function signup({
 }: {
   data: { fullName: string; email: string; password: string };
 }) {
-  const res = await fetch(`${API_URL}/api/auth/signup`, {
+  const res = await fetch(`/api/auth/signup`, {
     method: "POST",
     body: JSON.stringify(data),
   });
@@ -32,7 +32,7 @@ export async function signup({
 
 export async function getAllJobs() {
   try {
-    const res = await fetch("http://localhost:3000/api/jobs", {});
+    const res = await fetch("/api/jobs", {});
 
     const posts = await res.json();
 
@@ -44,7 +44,7 @@ export async function getAllJobs() {
 
 export async function getJob(id: string): Promise<any> {
   try {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`/api/jobs/${id}`, {
       cache: "force-cache",
     });
 
@@ -58,7 +58,7 @@ export async function getJob(id: string): Promise<any> {
 
 export async function createJob(id: string): Promise<any> {
   try {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`/api/jobs/${id}`, {
       cache: "force-cache",
     });
 
@@ -72,7 +72,7 @@ export async function createJob(id: string): Promise<any> {
 
 export async function updateJob(id: string): Promise<any> {
   try {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`/api/jobs/${id}`, {
       cache: "force-cache",
     });
 
@@ -86,7 +86,7 @@ export async function updateJob(id: string): Promise<any> {
 
 export async function deleteJob(id: string): Promise<any> {
   try {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`/api/jobs/${id}`, {
       cache: "force-cache",
     });
 
@@ -99,7 +99,7 @@ export async function deleteJob(id: string): Promise<any> {
 }
 
 export async function userJob(): Promise<any> {
-  const res = await fetch(`${API_URL}/api/user/jobs`, {
+  const res = await fetch(`/api/user/jobs`, {
     cache: "force-cache",
   });
 
