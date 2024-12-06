@@ -1,4 +1,4 @@
-const MoonIcon = ({ color = "#000" }: { color?: string }) => {
+const MoonIcon = ({ color }: { color?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

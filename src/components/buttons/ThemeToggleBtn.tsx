@@ -26,6 +26,8 @@ const ThemeToggleBtn = () => {
       localStorage?.setItem("theme", theme);
   }, [theme]);
 
+  console.log(theme);
+
   return (
     <button
       type="button"

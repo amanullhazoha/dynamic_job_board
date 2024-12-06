@@ -8,6 +8,7 @@ interface Field {
   label: string;
   required: boolean;
   placeholder: string;
+  disabled?: boolean;
 }
 
 const InputField = ({
@@ -18,9 +19,10 @@ const InputField = ({
   placeholder,
   type = "text",
   required = true,
+  disabled = false,
 }: Field) => {
   return (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={name}
         className="text-base text-stone-800 dark:text-white font-medium"
@@ -30,6 +32,7 @@ const InputField = ({
 
       <Field
         id={name}
+        disabled={disabled}
         type={type ? type : "text"}
         name={name}
         placeholder={placeholder}

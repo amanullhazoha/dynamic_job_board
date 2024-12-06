@@ -1,14 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 import MenuIcon from "@/assets/icons/MenuIcon";
 import ThemeToggleBtn from "../buttons/ThemeToggleBtn";
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const accessToken = Cookies.get("access_token");
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    if (accessToken) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [accessToken]);
 
   return (
     <nav className="bg-white dark:bg-slate-800 absolute z-10 right-[10px]">
@@ -16,7 +26,7 @@ const Navbar = () => {
         <ThemeToggleBtn />
 
         <button onClick={toggleMenu} className="text-slate-800 dark:text-white">
-          <MenuIcon color="#fff" />
+          <MenuIcon color="#000" />
         </button>
       </div>
 
@@ -41,6 +51,19 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+
+          {isLogin && (
+            <li>
+              <Link
+                href={`/user/${accessToken}`}
+                className="hover:text-green-500 transition-all duration-300"
+                onClick={toggleMenu}
+              >
+                Profile
+              </Link>
+            </li>
+          )}
+
           <li>
             <Link
               href="/jobs"
@@ -50,6 +73,7 @@ const Navbar = () => {
               Jobs
             </Link>
           </li>
+
           <li>
             <Link
               href="/"

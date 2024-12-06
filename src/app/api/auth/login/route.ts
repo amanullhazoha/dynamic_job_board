@@ -8,6 +8,8 @@ interface UserType {
   password: string;
 }
 
+const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_TOKEN || "default_secret_key";
+
 export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
@@ -48,7 +50,7 @@ export async function POST(req: NextRequest) {
         role: existingUser.role,
         email: existingUser.email,
       },
-      "this-is-your-jwt-token",
+      SECRET_KEY,
       {
         expiresIn: "7d",
       }
