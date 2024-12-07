@@ -27,16 +27,22 @@ export async function signup({
   return await res.json();
 }
 
-export async function getAllJobs() {
-  const res = await fetch("/api/jobs", { cache: "force-cache" });
+export async function getAllJobs(queryString: string) {
+  const res = await fetch(
+    queryString ? `/api/jobs?${queryString}` : "/api/jobs",
+    { cache: "force-cache" }
+  );
 
   return await res.json();
 }
 
-export async function getJob(id: string): Promise<any> {
-  const res = await fetch(`/api/jobs/${id}`, {
-    cache: "force-cache",
-  });
+export async function getJob(detail: string): Promise<any> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${detail}`,
+    {
+      cache: "force-cache",
+    }
+  );
 
   return await res.json();
 }

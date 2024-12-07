@@ -16,15 +16,27 @@ export async function GET(req: NextRequest) {
     let jobs = readJobs();
 
     if (categories.length > 0) {
-      jobs = jobs.filter((job: any) => categories.includes(job.job_category));
+      jobs = jobs.filter((job: any) =>
+        categories.some((category) =>
+          job.job_category.toLowerCase().includes(category.toLowerCase())
+        )
+      );
     }
 
     if (locations.length > 0) {
-      jobs = jobs.filter((job: any) => locations.includes(job.location));
+      jobs = jobs.filter((job: any) =>
+        locations.some((location) =>
+          job.location.toLowerCase().includes(location.toLowerCase())
+        )
+      );
     }
 
     if (roles.length > 0) {
-      jobs = jobs.filter((job: any) => roles.includes(job.job_role));
+      jobs = jobs.filter((job: any) =>
+        roles.some((role) =>
+          job.job_role.toLowerCase().includes(role.toLowerCase())
+        )
+      );
     }
 
     if (search) {
@@ -49,7 +61,7 @@ export async function GET(req: NextRequest) {
         totalPages,
         currentPage,
       },
-      message: "User login successfully",
+      message: "Get job successfully",
     });
   } catch (error: any) {
     console.log(error);

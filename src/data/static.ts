@@ -30,3 +30,40 @@ export const jobCategories = [
   { id: 29, name: "Real Estate" },
   { id: 30, name: "Transportation" },
 ];
+
+export const jobCategories2: string[] = [
+  "Education",
+  "Management",
+  "IT & Software",
+  "Legal",
+  "Finance",
+  "Data Science",
+  "Engineering",
+  "Healthcare",
+  "Marketing",
+  "Design",
+];
+
+export const jobRoles: string[] = [
+  "UX/UI Designer",
+  "QA Engineer",
+  "Mobile App Developer",
+  "DevOps Engineer",
+  "Backend Developer",
+  "Frontend Developer",
+  "Database Administrator",
+  "Data Scientist",
+  "Full Stack Developer",
+  "Project Manager",
+];
+
+export const locations: string[] = [
+  "Dhaka",
+  "Chattogram",
+  "Rajshahi",
+  "Khulna",
+  "Barishal",
+  "Sylhet",
+  "Rangpur",
+  "Mymensingh",
+];

@@ -2,7 +2,7 @@ interface checkbox {
   name?: string;
   label?: string;
   value?: boolean;
-  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox = ({ label, value, name, onChange }: checkbox) => {
