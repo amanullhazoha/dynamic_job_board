@@ -1,6 +1,7 @@
 "use client";
 
 import Cookies from "js-cookie";
+import { useContext } from "react";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
 import { createJob } from "@/app/services";
@@ -9,6 +10,7 @@ import InputField from "../inputs/InputField";
 import SubmitButton from "../buttons/SubmitButton";
 import TextareaField from "../inputs/TextareaField";
 import { createJobSchema } from "@/view/job/schema";
+import { AuthContext } from "@/context/authContext";
 import { jobPost } from "@/utilities/interface/job.interface";
 
 const initialValue: jobPost = {
@@ -32,7 +34,16 @@ const initialValue: jobPost = {
 };
 const CreateJobForm = () => {
   const router = useRouter();
+
+  const authContext = useContext(AuthContext);
+
   const accessToken: string | undefined = Cookies.get("access_token");
+
+  if (!authContext) {
+    throw new Error("useContext must be used within an AuthContextProvider");
+  }
+
+  const { user } = authContext;
 
   const handleSubmit = async (data: jobPost) => {
     const response = await createJob({ data, accessToken });
@@ -40,7 +51,7 @@ const CreateJobForm = () => {
     if (response.status === 201) {
       toast.success(response?.message);
 
-      router.push("/jobs");
+      router.push(`/user/$${user?.fullName}`);
     } else {
       toast.error(response?.message);
     }
@@ -48,7 +59,7 @@ const CreateJobForm = () => {
 
   return (
     <div className="w-full md:w-[80%] mx-auto">
-      <h3 className="text-xl md:text-2xl font-semibold text-slate-800 mb-4">
+      <h3 className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-white mb-4">
         Create Job Post
       </h3>
 

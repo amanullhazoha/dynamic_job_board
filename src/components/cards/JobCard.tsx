@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Cookies from "js-cookie";
 import EditIcon from "@/assets/icons/EditIcon";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import LocationIcon from "@/assets/icons/LocationIcon";
@@ -43,8 +42,9 @@ const JobCard = ({
           </div>
 
           <div className="flex items-center gap-2 mb-3">
-            {job?.skills?.map((item) => (
+            {job?.skills?.map((item, index) => (
               <p
+                key={index}
                 className={`text-[12px] py-[2px] px-2.5 rounded-xl bg-gray-300 text-stone-800`}
               >
                 {item}

@@ -66,6 +66,7 @@ const JobSection = () => {
 
   const handleSearch = () => {
     const currentParams = new URLSearchParams(searchParams.toString());
+
     const categories = Object.keys(selectedCategories).filter(
       (key) => selectedCategories[key]
     );

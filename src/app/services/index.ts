@@ -1,6 +1,4 @@
-import Cookies from "js-cookie";
 import { jobPost } from "@/utilities/interface/job.interface";
-import { number } from "yup";
 
 export async function login({
   data,

@@ -1,16 +1,18 @@
 "use client";
 
 import Cookies from "js-cookie";
+import { useContext } from "react";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import InputField from "../inputs/InputField";
 import { updateJob, getJob } from "@/app/services";
 import SubmitButton from "../buttons/SubmitButton";
 import TextareaField from "../inputs/TextareaField";
 import { createJobSchema } from "@/view/job/schema";
+import { AuthContext } from "@/context/authContext";
+import { useRouter, useSearchParams } from "next/navigation";
 import { jobPost } from "@/utilities/interface/job.interface";
-import { useEffect, useState } from "react";
 
 const initialValue: jobPost = {
   id: "",
@@ -37,9 +39,17 @@ const UpdateJobForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const authContext = useContext(AuthContext);
+
   const accessToken: string | undefined = Cookies.get("access_token");
 
   const [jobDetail, setJobDetail] = useState<jobPost>(initialValue);
+
+  if (!authContext) {
+    throw new Error("useContext must be used within an AuthContextProvider");
+  }
+
+  const { user } = authContext;
 
   const handleSubmit = async (data: jobPost) => {
     const response = await updateJob({
@@ -51,7 +61,7 @@ const UpdateJobForm = () => {
     if (response.status === 200) {
       toast.success(response?.message);
 
-      router.push("/jobs");
+      router.push(`/user/$${user?.fullName}`);
     } else {
       toast.error(response?.message);
     }
@@ -95,14 +105,14 @@ const UpdateJobForm = () => {
 
     if (id) {
       fetchJobByJobId(id);
+    } else {
+      router.push("/jobs");
     }
   }, [searchParams]);
 
-  console.log(jobDetail);
-
   return (
     <div className="w-full md:w-[80%] mx-auto">
-      <h3 className="text-xl md:text-2xl font-semibold text-slate-800 mb-4">
+      <h3 className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-white mb-4">
         Update Job
       </h3>
 

@@ -2,9 +2,72 @@
 
 import Link from "next/link";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import MenuIcon from "@/assets/icons/MenuIcon";
 import ThemeToggleBtn from "../buttons/ThemeToggleBtn";
+
+const NavList = [
+  {
+    id: 1,
+    href: "/",
+    name: "Home",
+    access: "public",
+  },
+  {
+    id: 2,
+    href: "/user",
+    name: "Profile",
+    access: "user",
+  },
+  {
+    id: 3,
+    href: "/jobs",
+    name: "Job",
+    access: "public",
+  },
+  {
+    id: 4,
+    href: "/about",
+    name: "About",
+    access: "public",
+  },
+  {
+    id: 5,
+    href: "/contact-us",
+    name: "Contact Us",
+    access: "public",
+  },
+];
+
+const NavLink = ({
+  href,
+  name,
+  onClick,
+}: {
+  href: string;
+  name: string;
+  onClick: () => void;
+}) => {
+  const pathname = usePathname();
+
+  const isActive = pathname === href?.toString()?.replace(" ", "%20");
+
+  return (
+    <li>
+      <Link
+        href={href}
+        onClick={onClick}
+        className={`${
+          isActive && "text-green-500"
+        } hover:text-green-500 transition-all duration-300`}
+      >
+        {name}
+      </Link>
+    </li>
+  );
+};
+
 const Navbar = ({
   user,
   setIsAuthenticated,
@@ -12,19 +75,11 @@ const Navbar = ({
   user: any;
   setIsAuthenticated: () => void;
 }) => {
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-  const accessToken = Cookies.get("access_token");
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
-  useEffect(() => {
-    if (accessToken) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  }, [accessToken]);
 
   return (
     <nav className="absolute z-10 right-[10px]">
@@ -48,62 +103,32 @@ const Navbar = ({
         </div>
 
         <ul className="flex flex-col gap-3 text-base font-medium text-white pl-6">
-          <li>
-            <Link
-              href="/"
-              className="hover:text-green-500 transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-          </li>
-
-          {isLogin && (
-            <li>
-              <Link
-                href={`/user/${accessToken}`}
-                className="hover:text-green-500 transition-all duration-300"
+          {NavList?.map((nav) =>
+            nav.access === "user" ? (
+              user ? (
+                <NavLink
+                  key={nav.id}
+                  href={`${nav.href}/${user?.fullName}`}
+                  name={nav.name}
+                  onClick={toggleMenu}
+                />
+              ) : null
+            ) : (
+              <NavLink
+                key={nav.id}
+                href={nav.href}
+                name={nav.name}
                 onClick={toggleMenu}
-              >
-                Profile
-              </Link>
-            </li>
+              />
+            )
           )}
 
           <li>
             <Link
-              href="/jobs"
-              className="hover:text-green-500 transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              Jobs
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/"
-              className="hover:text-green-500 transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              About
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/"
-              className="hover:text-green-500 transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              Contact Us
-            </Link>
-          </li>
-
-          <li>
-            <Link
               href="/login"
-              className="hover:text-green-500 transition-all duration-300"
+              className={`${
+                pathname === "/login" && "text-green-500"
+              } hover:text-green-500 transition-all duration-300`}
               onClick={toggleMenu}
             >
               Login
@@ -113,7 +138,9 @@ const Navbar = ({
           <li>
             <Link
               href="/signup"
-              className="hover:text-green-500 transition-all duration-300"
+              className={`${
+                pathname === "/signup" && "text-green-500"
+              } hover:text-green-500 transition-all duration-300`}
               onClick={toggleMenu}
             >
               Sign Up
@@ -127,8 +154,8 @@ const Navbar = ({
                 onClick={() => {
                   setIsAuthenticated();
 
-                  console.log("Authenticated");
                   Cookies.remove("access_token");
+
                   toggleMenu();
                 }}
               >

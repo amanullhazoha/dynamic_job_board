@@ -6,20 +6,28 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import JobCard from "@/components/cards/JobCard";
 import { userJob, deleteJob } from "@/app/services";
+import PreLoader from "@/components/preLoader/PreLoader";
 import { jobInfo } from "@/utilities/interface/job.interface";
 
 const ProfilePage = () => {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const accessToken: string | undefined = Cookies.get("access_token");
 
   const fetchUserJobPost = async () => {
+    setLoading(true);
+
     const response = await userJob(accessToken);
 
     if (response.status === 200) {
       setJobs(response.data);
+
+      setLoading(false);
     } else {
       toast.error(response?.message);
+
+      setLoading(false);
     }
   };
 
@@ -42,7 +50,7 @@ const ProfilePage = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl md:text-2xl font-semibold text-slate-800">
+        <h3 className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-white">
           User Job Post List
         </h3>
 
@@ -56,7 +64,9 @@ const ProfilePage = () => {
         </Link>
       </div>
 
-      {jobs?.length > 0 ? (
+      {loading ? (
+        <PreLoader />
+      ) : jobs?.length > 0 ? (
         <div className="grid grid-cols-1 gap-6">
           {jobs?.map((item: jobInfo, index: number) => (
             <JobCard

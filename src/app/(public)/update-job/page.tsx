@@ -1,7 +1,12 @@
 import UpdateJobForm from "@/components/form/updateForm";
+import { Suspense } from "react";
 
 const CreateJob = () => {
-  return <UpdateJobForm />;
+  return (
+    <Suspense>
+      <UpdateJobForm />
+    </Suspense>
+  );
 };
 
 export default CreateJob;
