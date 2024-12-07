@@ -1,5 +1,6 @@
 "use client";
 
+import Cookies from "js-cookie";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
 import { createJob } from "@/app/services";
@@ -31,11 +32,12 @@ const initialValue: jobPost = {
 };
 const CreateJobForm = () => {
   const router = useRouter();
+  const accessToken: string | undefined = Cookies.get("access_token");
 
   const handleSubmit = async (data: jobPost) => {
-    const response = await createJob({ data });
+    const response = await createJob({ data, accessToken });
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       toast.success(response?.message);
 
       router.push("/jobs");
@@ -45,8 +47,8 @@ const CreateJobForm = () => {
   };
 
   return (
-    <div className="w-full">
-      <h3 className="text-2xl font-semibold text-slate-800 mb-4">
+    <div className="w-full md:w-[80%] mx-auto">
+      <h3 className="text-xl md:text-2xl font-semibold text-slate-800 mb-4">
         Create Job Post
       </h3>
 
@@ -55,7 +57,7 @@ const CreateJobForm = () => {
         initialValues={initialValue}
         validationSchema={createJobSchema}
       >
-        {({ errors, touched, handleSubmit }) => (
+        {({ errors, touched, values, handleSubmit, setFieldValue }) => (
           <Form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white dark:bg-slate-800 px-5 py-5 shadow-section rounded-md"
@@ -79,6 +81,8 @@ const CreateJobForm = () => {
                 name="description"
                 touched={touched}
                 label="Job Description"
+                value={values?.description}
+                setFieldValue={setFieldValue}
                 placeholder="Enter the job description"
               />
             </div>
@@ -149,7 +153,9 @@ const CreateJobForm = () => {
                 required={true}
                 touched={touched}
                 name="skills"
+                value={values?.skills}
                 label="Require Skills"
+                setFieldValue={setFieldValue}
                 placeholder="Enter required skills for job (React, Next, etc.)"
               />
             </div>
@@ -160,7 +166,9 @@ const CreateJobForm = () => {
                 required={true}
                 name="requirements"
                 touched={touched}
+                value={values?.requirements}
                 label="Job Requirements"
+                setFieldValue={setFieldValue}
                 placeholder="Enter the job requirements"
               />
             </div>
@@ -172,6 +180,8 @@ const CreateJobForm = () => {
                 name="benefits"
                 touched={touched}
                 label="Benefits"
+                value={values?.benefits}
+                setFieldValue={setFieldValue}
                 placeholder="Enter the benefits"
               />
             </div>

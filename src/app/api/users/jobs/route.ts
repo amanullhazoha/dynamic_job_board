@@ -23,8 +23,6 @@ export async function GET(req: NextRequest) {
       message: "Get user all job successfully",
     });
   } catch (error: any) {
-    console.log(error);
-
     return NextResponse.json({
       status: 500,
       message: error.message,

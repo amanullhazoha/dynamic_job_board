@@ -93,9 +93,9 @@ export async function POST(req: NextRequest) {
       posted_date: new Date().toISOString(),
     };
 
-    jobs.push(newJobData);
+    jobs.unshift(newJobData);
 
-    writeJobs(jobs);
+    writeJobs({ data: jobs });
 
     return NextResponse.json({
       status: 201,

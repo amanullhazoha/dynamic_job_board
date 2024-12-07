@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { jobPost } from "@/utilities/interface/job.interface";
+import { number } from "yup";
 
 export async function login({
   data,
@@ -47,13 +48,24 @@ export async function getJob(detail: string): Promise<any> {
   return await res.json();
 }
 
-export async function createJob({ data }: { data: jobPost }): Promise<any> {
+export async function createJob({
+  data,
+  accessToken,
+}: {
+  data: jobPost;
+  accessToken: string | undefined;
+}): Promise<any> {
+  const payload = {
+    ...data,
+    skills: data.skills.split(","),
+  };
+
   const res = await fetch(`/api/jobs`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Cookies.get("access-token")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
@@ -63,40 +75,51 @@ export async function createJob({ data }: { data: jobPost }): Promise<any> {
 export async function updateJob({
   id,
   data,
+  accessToken,
 }: {
   id: string;
   data: any;
+  accessToken: string | undefined;
 }): Promise<any> {
+  const payload = {
+    ...data,
+    id: Number(data?.id),
+    skills: data.skills.split(","),
+  };
+
   const res = await fetch(`/api/jobs/${id}`, {
     method: "PUT",
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Cookies.get("access-token")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
   return await res.json();
 }
 
-export async function deleteJob(id: string): Promise<any> {
+export async function deleteJob(
+  id: string,
+  accessToken: string | undefined
+): Promise<any> {
   const res = await fetch(`/api/jobs/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Cookies.get("access-token")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
   return await res.json();
 }
 
-export async function userJob(): Promise<any> {
-  const res = await fetch(`/api/user/jobs`, {
+export async function userJob(accessToken: string | undefined): Promise<any> {
+  const res = await fetch(`/api/users/jobs`, {
     cache: "force-cache",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Cookies.get("access-token")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 

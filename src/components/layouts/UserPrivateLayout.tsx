@@ -1,13 +1,20 @@
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
+"use client";
+
+import { useContext } from "react";
+import { AuthContext } from "@/context/authContext";
 
 const UserPrivateLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const accessToken: string | undefined = Cookies.get("access_token");
-  const user: any = accessToken && jwtDecode(accessToken);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error("useContext must be used within an AuthContextProvider");
+  }
+
+  const { user } = authContext;
 
   return (
     <div className="grid grid-cols-12 gap-6 py-2">
@@ -19,7 +26,7 @@ const UserPrivateLayout = ({
 
           <div className="flex flex-col gap-2 mt-4">
             <p className="text-center text-3xl font-semibold text-slate-800 dark:text-white mb-1">
-              Amanullha Zoha
+              {user?.fullName}
             </p>
 
             <div className="flex justify-between">

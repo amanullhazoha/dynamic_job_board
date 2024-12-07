@@ -207,6 +207,7 @@ const JobSection = () => {
 
             <button
               type="button"
+              className="max-md:block hidden"
               onClick={() => setOpenFilter((prev) => !prev)}
             >
               <FilterIcon />

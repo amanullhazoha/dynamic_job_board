@@ -36,6 +36,7 @@ export interface jobDetails {
 }
 
 export interface jobPost {
+  id?: string;
   title: string;
   description: string;
   company_name: string;

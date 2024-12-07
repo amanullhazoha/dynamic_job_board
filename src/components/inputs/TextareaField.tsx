@@ -4,17 +4,21 @@ interface Field {
   errors: any;
   touched: any;
   name: string;
+  value: string;
   label: string;
   required: boolean;
   placeholder: string;
+  setFieldValue: (name: string, value: string) => void;
 }
 
 const TextareaField = ({
   name,
   label,
+  value,
   errors,
   touched,
   placeholder,
+  setFieldValue,
   required = true,
 }: Field) => {
   return (
@@ -29,8 +33,9 @@ const TextareaField = ({
       <textarea
         id={name}
         name={name}
+        value={value}
         placeholder={placeholder}
-        // error={touched?.[name] && errors?.[name]}
+        onChange={(e) => setFieldValue(name, e.target.value)}
         className={`border border-[#D1D5DB] bg-[#F9FAFB] rounded-lg w-full px-4 py-3 text-base text-slate-800 outline-none mt-2
                 ${touched?.[name] && errors?.[name] ? "border-red-500" : ""}`}
       />

@@ -46,6 +46,8 @@ export async function PUT(req: NextRequest, { params }: { params: any }) {
 
     const jobs = readJobs();
 
+    console.log(tokenDecoded, id, "jhioji");
+
     const jobIndex = jobs.findIndex(
       (job: any) => job.id === Number(id) && job.posted_by === tokenDecoded.id
     );
@@ -58,7 +60,7 @@ export async function PUT(req: NextRequest, { params }: { params: any }) {
 
     jobs[jobIndex] = { ...jobs[jobIndex], ...updatedJob };
 
-    writeJobs(jobs);
+    writeJobs({ data: jobs });
 
     return NextResponse.json({
       status: 200,
@@ -100,7 +102,7 @@ export async function DELETE(req: NextRequest, { params }: { params: any }) {
       });
     }
 
-    writeJobs(filteredJobs);
+    writeJobs({ data: filteredJobs });
 
     return NextResponse.json({
       data: id,

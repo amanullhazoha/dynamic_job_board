@@ -5,8 +5,8 @@ import * as Yup from "yup";
 export const createJobSchema = () =>
   Yup.object().shape({
     title: Yup.string()
-      .min(50, "Job title must be at least 50 characters")
-      .max(200, "Job title must not exceed 200 characters")
+      .min(3, "Job title must be at least 3 characters")
+      .max(100, "Job title must not exceed 100 characters")
       .required("Job title is required"),
     description: Yup.string()
       .min(100, "Description must be at least 100 characters")
@@ -18,7 +18,7 @@ export const createJobSchema = () =>
     salary_range: Yup.string().required("Salary range is required"),
     requirements: Yup.string().required("Requirements is required"),
     benefits: Yup.string().required("Benefits is required"),
-    company_logo: Yup.string().required("Company logo is required"),
+    company_logo: Yup.string(),
     contact_email: Yup.string()
       .email("This is not a valid email")
       .required("Contact email is required"),
