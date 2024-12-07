@@ -1,6 +1,7 @@
 "use client";
 
 import Cookie from "js-cookie";
+import { useContext } from "react";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
 import { login } from "@/app/services";
@@ -8,9 +9,17 @@ import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
 import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
+import { AuthContext } from "@/context/authContext";
 
 const LoginForm = () => {
   const router = useRouter();
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error("useContext must be used within an AuthContextProvider");
+  }
+
+  const { setIsAuthenticated } = authContext;
 
   const handleSubmit = async (data: { email: string; password: string }) => {
     const response = await login({ data });
@@ -20,6 +29,7 @@ const LoginForm = () => {
 
       Cookie.set("access_token", response.data.token, { expires: 7 });
 
+      setIsAuthenticated(true);
       router.push("/");
     } else {
       toast.error(response?.message);

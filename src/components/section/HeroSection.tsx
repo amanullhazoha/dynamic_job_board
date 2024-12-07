@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import JobCard from "@/components/cards/JobCard";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const featureJob = [
   {
@@ -128,6 +130,18 @@ const settings = {
 };
 
 const HeroSection = () => {
+  const router = useRouter();
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = () => {
+    if (searchTerm) {
+      router.push(`/jobs?search=${searchTerm.toString()}`);
+    } else {
+      toast.error("No search term");
+    }
+  };
+
   return (
     <section className="bg-white shadow-section dark:bg-slate-700 rounded-md md:px-4 py-10 my-4">
       <div className="container mx-auto px-4">
@@ -151,24 +165,16 @@ const HeroSection = () => {
               <input
                 type="text"
                 placeholder="Job title or keyword"
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full border rounded-md px-4 py-2 outline-none"
               />
             </div>
 
-            {/* <div className="w-full col-span-12 md:col-span-5">
-              <label className="text-slate-800 dark:text-white text-lg font-semibold">
-                Job Location
-              </label>
-
-              <input
-                type="text"
-                placeholder="Job title or keyword"
-                className="w-full border rounded-md px-4 py-2 outline-none"
-              />
-            </div> */}
-
             <div className="col-span-12 md:col-span-2 w-full h-[42px]">
-              <button className="bg-green-500 text-white font-medium px-6 h-[42px] rounded-md hover:bg-slate-800 hover:text-white w-full">
+              <button
+                onClick={handleSearch}
+                className="bg-green-500 text-white font-medium px-6 h-[42px] rounded-md hover:bg-slate-800 hover:text-white w-full"
+              >
                 Search
               </button>
             </div>

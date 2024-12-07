@@ -5,7 +5,7 @@ const MoonIcon = ({ className }: { className?: string }) => {
       width="20"
       height="20"
       viewBox="0 0 24 24"
-      className={`text-slate-800 dark:text-white ${className}`}
+      className={`dark:text-slate-800 text-white ${className}`}
     >
       <path
         fill="currentColor"

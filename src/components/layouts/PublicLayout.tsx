@@ -1,7 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import Navbar from "../navs/MainNav";
-import ThemeToggleBtn from "../buttons/ThemeToggleBtn";
-// import MenuIcon from "@/assets/icons/MenuIcon";
+import Header from "./Header";
+import { AuthContextProvider } from "@/context/authContext";
 
 const PublicLayout = ({
   children,
@@ -9,72 +10,8 @@ const PublicLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <>
-      <header className="transition-colors duration-500 bg-white dark:bg-slate-800 sticky top-0 shadow-md z-[9999]">
-        <div className="main-container flex justify-between items-center py-5 relative">
-          <div className="flex items-center gap-10">
-            <Link href="/">
-              <p className="text-2xl font-bold text-slate-800 dark:text-white">
-                Job{" "}
-                <span className="text-green-500 italic font-serif">Board</span>
-              </p>
-            </Link>
-
-            <nav className="hidden md:block">
-              <ul className="flex gap-8 text-base font-medium text-slate-800 dark:text-white">
-                <li>
-                  <Link href="/" className="hover:text-green-500">
-                    Home
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/jobs" className="hover:text-green-500">
-                    Job
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/" className="hover:text-green-500">
-                    About
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/" className="hover:text-green-500">
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <ul className="items-center gap-4 text-base font-medium relative hidden md:flex">
-            <Link
-              href="/login"
-              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800 "
-            >
-              <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
-                Login
-              </p>
-            </Link>
-
-            <Link
-              href="/signup"
-              className="hover:text-white dark:hover:text-white text-white dark:text-slate-800 "
-            >
-              <p className="bg-green-500 hover:bg-slate-800 dark:hover:bg-green-500 dark:bg-white px-5 py-1.5 rounded-md">
-                Sign Up
-              </p>
-            </Link>
-
-            <li>
-              <ThemeToggleBtn />
-            </li>
-          </ul>
-          <Navbar />
-        </div>
-      </header>
+    <AuthContextProvider>
+      <Header />
 
       <main className="transition-colors duration-500 md:min-h-[calc(100vh-367px)] py-5">
         <div className="main-container">{children}</div>
@@ -181,7 +118,7 @@ const PublicLayout = ({
           </div>
         </div>
       </footer>
-    </>
+    </AuthContextProvider>
   );
 };
 

@@ -26,15 +26,13 @@ const ThemeToggleBtn = () => {
       localStorage?.setItem("theme", theme);
   }, [theme]);
 
-  console.log(theme);
-
   return (
     <button
       type="button"
       onClick={handleThemeChange}
       className="capitalize w-8 h-8 bg-slate-800 dark:bg-white rounded-full text-white dark:text-slate-800 font-medium flex justify-center items-center"
     >
-      <MoonIcon className="text-white dark:text-slate-800" />
+      <MoonIcon />
     </button>
   );
 };

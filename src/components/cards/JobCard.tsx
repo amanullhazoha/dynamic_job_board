@@ -1,11 +1,11 @@
 import Link from "next/link";
-import LocationIcon from "@/assets/icons/LocationIcon";
-import { jobInfo } from "@/utilities/interface/job.interface";
-import BriefcaseIcon from "@/assets/icons/BriefcaseIcon";
-import CalenderIcon from "@/assets/icons/CalenderIcon";
 import EditIcon from "@/assets/icons/EditIcon";
-import DeleteIcon from "@/assets/icons/DeleteIcon";
 import ViewIcon from "@/assets/icons/ViewIcon";
+import DeleteIcon from "@/assets/icons/DeleteIcon";
+import LocationIcon from "@/assets/icons/LocationIcon";
+import CalenderIcon from "@/assets/icons/CalenderIcon";
+import BriefcaseIcon from "@/assets/icons/BriefcaseIcon";
+import { jobInfo } from "@/utilities/interface/job.interface";
 
 const JobCard = ({
   job,
@@ -17,9 +17,16 @@ const JobCard = ({
   return (
     <Link href={`/jobs/${job?.id}`}>
       <div className="shadow-section rounded-md px-4 py-4 dark:bg-slate-800 relative">
-        <h2 className="text-slate-800 dark:text-white text-xl font-semibold mb-2">
-          {job?.job_role}
+        <h2 className="text-slate-800 dark:text-white text-xl font-semibold">
+          {job?.title}
         </h2>
+
+        <div className="mb-1.5 flex gap-2 items-center">
+          <p className="text-slate-500 dark:text-white text-sm font-medium mt-0.5">
+            <span className=" font-semibold">{job?.job_role}</span> (
+            {job?.job_category})
+          </p>
+        </div>
 
         <p className="text-slate-500 dark:text-white text-base font-semibold mb-1.5">
           {job?.company_name}
@@ -30,6 +37,16 @@ const JobCard = ({
           <p className="text-slate-500 dark:text-white text-sm">
             {job?.location}
           </p>
+        </div>
+
+        <div className="flex items-center gap-2 mb-3">
+          {job?.skills?.map((item) => (
+            <p
+              className={`text-[12px] py-[2px] px-2.5 rounded-xl bg-gray-300 text-stone-800`}
+            >
+              {item}
+            </p>
+          ))}
         </div>
 
         <div className="flex justify-between items-center">

@@ -15,6 +15,8 @@ export function middleware(request: NextRequest) {
     console.error("JWT verification error:", err);
   }
 
+  console.log(user, "authent");
+
   const adminRoutes = ["/admin/dashboard"];
   const publicRoutes = ["/login", "/signup"];
   const userRoutes = ["/user"];

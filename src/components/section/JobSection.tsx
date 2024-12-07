@@ -75,13 +75,18 @@ const JobSection = () => {
 
     currentParams.delete("page");
 
-    searchTerm && currentParams.set("search", searchTerm?.toString());
+    searchTerm
+      ? currentParams.set("search", searchTerm?.toString())
+      : currentParams.delete("search");
     location && currentParams.set("locations", location?.toString());
 
-    categories?.length > 0 &&
-      currentParams.set("categories", categories?.toString());
+    categories?.length > 0
+      ? currentParams.set("categories", categories?.toString())
+      : currentParams.delete("categories");
 
-    roles?.length > 0 && currentParams.set("roles", roles?.toString());
+    roles?.length > 0
+      ? currentParams.set("roles", roles?.toString())
+      : currentParams.delete("roles");
 
     setOpenFilter(false);
 
@@ -279,7 +284,9 @@ const JobSection = () => {
             <JobCard key={index} job={item} />
           ))
         ) : (
-          <p className="text-center font-medium text-xl">No jobs found</p>
+          <p className="text-center font-medium text-xl text-slate-800 dark:text-white">
+            No jobs found
+          </p>
         )}
 
         {metaData?.totalItems

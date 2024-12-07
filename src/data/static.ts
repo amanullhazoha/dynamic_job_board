@@ -1,5 +1,5 @@
 export const jobCategories = [
-  { id: 1, name: "Tech" },
+  { id: 1, name: "IT & Software" },
   { id: 2, name: "Marketing" },
   { id: 3, name: "Design" },
   { id: 4, name: "Finance" },

@@ -11,7 +11,7 @@ const CategorySection = () => {
 
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {jobCategories?.map((item: { name: string; id: number }) => (
-          <Link href="/" key={item?.id}>
+          <Link href={`/jobs?categories=${item?.name}`} key={item?.id}>
             <li className="flex items-center gap-1.5 font-semibold text-sm text-slate-800 dark:text-white">
               <ArrowIcon /> {item?.name}
             </li>

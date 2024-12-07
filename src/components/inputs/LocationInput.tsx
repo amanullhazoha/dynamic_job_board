@@ -21,7 +21,7 @@ const LocationInput = ({
           id="division-select"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="block w-full px-4 py-2 pr-8 border border-gray-300 rounded-md shadow-sm bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm appearance-none"
+          className="block w-full px-4 py-2 pr-8 border border-gray-300 rounded-md shadow-sm  focus:outline-none  sm:text-sm appearance-none"
         >
           <option value="">Select...</option>
           {locations.map((loc) => (
@@ -53,7 +53,7 @@ const LocationInput = ({
       <div className="mb-2 mt-3">
         <label
           htmlFor="custom-location"
-          className="block mb-2 text-sm font-medium text-gray-700"
+          className="block mb-2 text-sm font-medium text-slate-800 dark:text-white"
         >
           Or Enter a Location:
         </label>
@@ -64,7 +64,7 @@ const LocationInput = ({
           value={location}
           placeholder="Type a location"
           onChange={(e) => setLocation(e.target.value)}
-          className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
         />
       </div>
     </div>

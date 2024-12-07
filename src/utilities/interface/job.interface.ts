@@ -1,7 +1,10 @@
 export interface jobInfo {
   id: number;
+  skills: string[];
   location: string;
   job_role: string;
+  job_category: string;
+  title: string;
   application_deadline: string;
   company_name: string;
   experience_level: string;

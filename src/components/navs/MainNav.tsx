@@ -5,7 +5,13 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import MenuIcon from "@/assets/icons/MenuIcon";
 import ThemeToggleBtn from "../buttons/ThemeToggleBtn";
-const Navbar = () => {
+const Navbar = ({
+  user,
+  setIsAuthenticated,
+}: {
+  user: any;
+  setIsAuthenticated: () => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const accessToken = Cookies.get("access_token");
@@ -21,7 +27,7 @@ const Navbar = () => {
   }, [accessToken]);
 
   return (
-    <nav className="bg-white dark:bg-slate-800 absolute z-10 right-[10px]">
+    <nav className="absolute z-10 right-[10px]">
       <div className="md:hidden flex justify-between items-center gap-2.5">
         <ThemeToggleBtn />
 
@@ -83,6 +89,7 @@ const Navbar = () => {
               About
             </Link>
           </li>
+
           <li>
             <Link
               href="/"
@@ -92,6 +99,43 @@ const Navbar = () => {
               Contact Us
             </Link>
           </li>
+
+          <li>
+            <Link
+              href="/login"
+              className="hover:text-green-500 transition-all duration-300"
+              onClick={toggleMenu}
+            >
+              Login
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/signup"
+              className="hover:text-green-500 transition-all duration-300"
+              onClick={toggleMenu}
+            >
+              Sign Up
+            </Link>
+          </li>
+
+          {user && (
+            <li>
+              <button
+                className="hover:text-green-500 transition-all duration-300"
+                onClick={() => {
+                  setIsAuthenticated();
+
+                  console.log("Authenticated");
+                  Cookies.remove("access_token");
+                  toggleMenu();
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
