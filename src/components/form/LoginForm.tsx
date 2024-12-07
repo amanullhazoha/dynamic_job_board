@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Cookie from "js-cookie";
 import { useContext } from "react";
 import { Formik, Form } from "formik";
@@ -10,6 +11,7 @@ import InputField from "../inputs/InputField";
 import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
 import { AuthContext } from "@/context/authContext";
+import loginImage from "@/assets/images/login.png";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -38,7 +40,9 @@ const LoginForm = () => {
 
   return (
     <div className="w-full sm:w-[90%] xl:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center max-md:py-10 md:h-[55vh]">
-      <div className="hidden md:block"></div>
+      <div className="max-md:hidden md:block flex justify-center items-center w-[90%]">
+        <Image src={loginImage} alt="login image" />
+      </div>
 
       <Formik
         onSubmit={handleSubmit}

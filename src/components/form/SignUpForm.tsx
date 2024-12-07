@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
 import { signup } from "@/app/services";
@@ -7,6 +8,7 @@ import { useRouter } from "next/navigation";
 import InputField from "../inputs/InputField";
 import SubmitButton from "../buttons/SubmitButton";
 import { signupSchema } from "@/view/auth/schema";
+import loginImage from "@/assets/images/login.png";
 
 const SignupForm = () => {
   const router = useRouter();
@@ -29,7 +31,9 @@ const SignupForm = () => {
 
   return (
     <div className="w-full sm:w-[90%] xl:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center max-md:py-10 md:h-[55vh]">
-      <div className="hidden md:block"></div>
+      <div className="max-md:hidden md:block flex justify-center items-center w-[90%]">
+        <Image src={loginImage} alt="login image" />
+      </div>
 
       <Formik
         onSubmit={handleSubmit}
