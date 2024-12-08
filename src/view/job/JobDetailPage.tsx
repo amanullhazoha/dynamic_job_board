@@ -149,7 +149,7 @@ const JobDetailPage = ({ jobDetail }: any) => {
         </div>
       </div>
 
-      <ChatSection jobId={jobDetail?.id} requiterId={jobDetail?.posted_by} />
+      {/* <ChatSection jobId={jobDetail?.id} requiterId={jobDetail?.posted_by} /> */}
     </div>
   );
 };
