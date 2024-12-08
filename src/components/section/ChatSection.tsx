@@ -121,8 +121,9 @@ const ChatSection = ({
       <h3 className="text-xl font-bold mb-4">Chat with Recruiter</h3>
 
       <div className="space-y-3 overflow-y-scroll max-h-72 p-2 border rounded-md bg-gray-50">
-        {messages?.map((message: any) => (
+        {messages?.map((message: any, index: number) => (
           <Message
+            key={index}
             senderType={user?.id === message?.userId ? "owner" : "requiter"}
             message={message}
             user={user}

@@ -78,7 +78,7 @@ const LoginForm = () => {
             <SubmitButton title="Login" />
 
             <p className="text-slate-800 dark:text-white text-center">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-blue-500">
                 Sign Up
               </Link>
