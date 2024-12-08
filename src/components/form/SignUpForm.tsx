@@ -9,6 +9,7 @@ import InputField from "../inputs/InputField";
 import SubmitButton from "../buttons/SubmitButton";
 import { signupSchema } from "@/view/auth/schema";
 import loginImage from "@/assets/images/login.png";
+import Link from "next/link";
 
 const SignupForm = () => {
   const router = useRouter();
@@ -76,6 +77,13 @@ const SignupForm = () => {
             />
 
             <SubmitButton title="Sign Up" />
+
+            <p className="text-slate-800 dark:text-white text-center">
+              Already have an account?{" "}
+              <Link href="/login" className="text-blue-500">
+                Login
+              </Link>
+            </p>
           </Form>
         )}
       </Formik>

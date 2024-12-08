@@ -35,7 +35,7 @@ export async function getAllJobs(queryString: string) {
   return await res.json();
 }
 
-export async function getJob(detail: string): Promise<any> {
+export async function getJob(detail: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${detail}`,
     {

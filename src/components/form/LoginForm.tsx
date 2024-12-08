@@ -12,6 +12,7 @@ import { loginSchema } from "@/view/auth/schema";
 import SubmitButton from "../buttons/SubmitButton";
 import { AuthContext } from "@/context/authContext";
 import loginImage from "@/assets/images/login.png";
+import Link from "next/link";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -75,6 +76,13 @@ const LoginForm = () => {
             />
 
             <SubmitButton title="Login" />
+
+            <p className="text-slate-800 dark:text-white text-center">
+              Don't have an account?{" "}
+              <Link href="/signup" className="text-blue-500">
+                Sign Up
+              </Link>
+            </p>
           </Form>
         )}
       </Formik>

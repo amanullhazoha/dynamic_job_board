@@ -1,3 +1,4 @@
+import ChatSection from "@/components/section/ChatSection";
 import JobDetailTab from "@/components/tabs/JobDetailTab";
 
 const JobDetailPage = ({ jobDetail }: any) => {
@@ -147,6 +148,8 @@ const JobDetailPage = ({ jobDetail }: any) => {
           </p>
         </div>
       </div>
+
+      <ChatSection jobId={jobDetail?.id} requiterId={jobDetail?.posted_by} />
     </div>
   );
 };
