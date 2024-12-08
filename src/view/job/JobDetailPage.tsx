@@ -1,4 +1,4 @@
-import ChatSection from "@/components/section/ChatSection";
+// import ChatSection from "@/components/section/ChatSection";
 import JobDetailTab from "@/components/tabs/JobDetailTab";
 
 const JobDetailPage = ({ jobDetail }: any) => {
