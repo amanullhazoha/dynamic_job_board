@@ -15,7 +15,7 @@ const JobDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchJobPost = async () => {
-    const response = detail && (await getJob(detail?.toString()));
+    const response = await getJob(detail?.toString());
 
     if (response.status === 200) {
       setJob(response.data);

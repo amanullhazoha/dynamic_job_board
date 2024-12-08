@@ -36,12 +36,9 @@ export async function getAllJobs(queryString: string) {
 }
 
 export async function getJob(detail: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${detail}`,
-    {
-      cache: "force-cache",
-    }
-  );
+  const res = await fetch(`/api/jobs/${detail}`, {
+    cache: "force-cache",
+  });
 
   return await res.json();
 }
